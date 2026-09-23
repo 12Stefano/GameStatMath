@@ -81,11 +81,108 @@
               <p class="section-description">Beautiful screenshots showcasing your app's best features.</p>
             </div>
             <div class="screenshots-container">
-              <div class="screenshots-scroll"></div>
+              <div class="screenshots-scroll">
+                <div class="screenshot-card">
+                  <button type="button" class="screenshot-trigger btn" data-bs-toggle="modal" data-bs-target="#screenshot-modal-0"><img src="images/screenshots/ita-gsm-match.jpg" alt="Match" class="screenshot-image" /></button>
+                </div>
+                <div class="screenshot-card">
+                  <button type="button" class="screenshot-trigger btn" data-bs-toggle="modal" data-bs-target="#screenshot-modal-1"><img src="images/screenshots/en-gsm-livestats.jpg" alt="Live stats" class="screenshot-image" /></button>
+                </div>
+                <div class="screenshot-card">
+                  <button type="button" class="screenshot-trigger btn" data-bs-toggle="modal" data-bs-target="#screenshot-modal-2"><img src="images/screenshots/en-gsm-playercard.jpg" alt="Player card" class="screenshot-image" /></button>
+                </div>
+                <div class="screenshot-card">
+                  <button type="button" class="screenshot-trigger btn" data-bs-toggle="modal" data-bs-target="#screenshot-modal-3"><img src="images/screenshots/en-gsm-charts.jpg" alt="customize charts" class="screenshot-image" /></button>
+                </div>
+                <div class="screenshot-card">
+                  <button type="button" class="screenshot-trigger btn" data-bs-toggle="modal" data-bs-target="#screenshot-modal-4"><img src="images/screenshots/en-gsm-chartsdouble.jpg" alt="charts" class="screenshot-image" /></button>
+                </div>
+                <div class="screenshot-card">
+                  <button type="button" class="screenshot-trigger btn" data-bs-toggle="modal" data-bs-target="#screenshot-modal-5"><img src="images/screenshots/en-gsm-double.jpg" alt="Pair couple" class="screenshot-image" /></button>
+                </div>
+              </div>
+            </div>
+            <div id="screenshot-modal-0" tabindex="-1" class="modal fade screenshot-modal" aria-labelledby="screenshotModalLabel0" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4>Screenshot 1</h4>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img src="images/screenshots/ita-gsm-match.jpg" alt="Match" class="img-fluid screenshot-lightbox-image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="screenshot-modal-1" tabindex="-1" class="modal fade screenshot-modal" aria-labelledby="screenshotModalLabel1" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4>Screenshot 2</h4>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img src="images/screenshots/en-gsm-livestats.jpg" alt="Live stats" class="img-fluid screenshot-lightbox-image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="screenshot-modal-2" tabindex="-1" class="modal fade screenshot-modal" aria-labelledby="screenshotModalLabel2" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4>Screenshot 3</h4>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img src="images/screenshots/en-gsm-playercard.jpg" alt="Player card" class="img-fluid screenshot-lightbox-image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="screenshot-modal-3" tabindex="-1" class="modal fade screenshot-modal" aria-labelledby="screenshotModalLabel3" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4>Screenshot 4</h4>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img src="images/screenshots/en-gsm-charts.jpg" alt="customize charts" class="img-fluid screenshot-lightbox-image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="screenshot-modal-4" tabindex="-1" class="modal fade screenshot-modal" aria-labelledby="screenshotModalLabel4" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4>Screenshot 5</h4>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img src="images/screenshots/en-gsm-chartsdouble.jpg" alt="charts" class="img-fluid screenshot-lightbox-image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="screenshot-modal-5" tabindex="-1" class="modal fade screenshot-modal" aria-labelledby="screenshotModalLabel5" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4>Screenshot 6</h4>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img src="images/screenshots/en-gsm-double.jpg" alt="Pair couple" class="img-fluid screenshot-lightbox-image" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div id="features" class="features-section features-grid-layout features-grid-multiple-of-two">
+        <div id="features" class="features-section features-cards-layout features-grid-auto">
           <div class="container">
             <div class="section-header">
               <h2>Powerful Features</h2>
@@ -94,31 +191,38 @@
             <div class="features-grid">
               <div class="feature-card">
                 <div class="feature-icon">
-                  <i class="feature-icon-image bi-star-fill"></i>
-                </div>
-                <h4 class="feature-title">Feature One</h4>
-                <p class="feature-description">Describe what this feature does and why it matters.</p>
-              </div>
-              <div class="feature-card">
-                <div class="feature-icon">
                   <i class="feature-icon-image bi-lightning-charge-fill"></i>
                 </div>
-                <h4 class="feature-title">Feature Two</h4>
-                <p class="feature-description">Explain the benefit this brings to users.</p>
-              </div>
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="feature-icon-image bi-heart-fill"></i>
-                </div>
-                <h4 class="feature-title">Feature Three</h4>
-                <p class="feature-description">Highlight what makes this feature special.</p>
+                <h4 class="feature-title">Live Match Tracking</h4>
+                <p class="feature-description">Capture every point and shot as play happens to guide instant adjustments.</p>
               </div>
               <div class="feature-card">
                 <div class="feature-icon">
                   <i class="feature-icon-image bi-graph-up-arrow"></i>
                 </div>
-                <h4 class="feature-title">Feature Four</h4>
-                <p class="feature-description">Show how this feature helps users make progress faster.</p>
+                <h4 class="feature-title">Live Set Statistics</h4>
+                <p class="feature-description">See winners and errors ad all other stats instantly to spot pressure moments during play.</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="feature-icon-image bi-graph-up-arrow"></i>
+                </div>
+                <h4 class="feature-title">Automatic Visual Insights</h4>
+                <p class="feature-description">View interactive stroke charts that reveal patterns and outcomes clearly.</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="feature-icon-image bi-people-fill"></i>
+                </div>
+                <h4 class="feature-title">Player Archive</h4>
+                <p class="feature-description">Store match history and stats to track growth over time.</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="feature-icon-image bi-shield-check"></i>
+                </div>
+                <h4 class="feature-title">Data-Driven Coaching</h4>
+                <p class="feature-description">Turn match details into simple steps for better training and wins.</p>
               </div>
             </div>
           </div>
