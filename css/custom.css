@@ -1,0 +1,419 @@
+/* =====================
+   PALETTE BASE — "Night session on hard court"
+   ===================== */
+:root {
+    /* Court */
+    --court-blue: #123a6b;
+    --court-green: #1d5b4f;
+    --court-line: rgba(255, 255, 255, 0.07);
+    --court-line-strong: rgba(255, 255, 255, 0.85);
+    --court-chalk: rgba(255, 255, 255, 0.55);   /* righe dei campi scenografici */
+
+    /* Ball */
+    --ball: #dcf54a;
+    --ball-soft: rgba(220, 245, 74, 0.14);
+    --ball-glow: rgba(220, 245, 74, 0.35);
+
+    /* Glass */
+    --glass-bg: rgba(160, 200, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-border-top: rgba(255, 255, 255, 0.22);
+    --glass-shadow: 0 6px 28px rgba(2, 10, 24, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    /* Backgrounds */
+    --dark-bg-a: #06152b;
+    --dark-bg-b: #0a2240;
+    --dark-bg-c: #0f3a3a;
+
+    /*
+      Campo da tennis regolamentare in proporzione (10.97m x 23.77m, verticale).
+      Ogni riga è un layer: linear-gradient pieno + posizione + dimensione.
+      Riutilizzato da tutte le "inquadrature" della pagina.
+    */
+    --court-lines:
+        /* rete */
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 50% 50% / 100% 3px no-repeat,
+        /* linee di fondo */
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 0 0 / 100% 2px no-repeat,
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 0 100% / 100% 2px no-repeat,
+        /* segni centrali sulle linee di fondo */
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 50% 0 / 2px 1.5% no-repeat,
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 50% 100% / 2px 1.5% no-repeat,
+        /* laterali del doppio */
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 0 0 / 2px 100% no-repeat,
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 100% 0 / 2px 100% no-repeat,
+        /* laterali del singolo */
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 12.5% 0 / 2px 100% no-repeat,
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 87.5% 0 / 2px 100% no-repeat,
+        /* linee di servizio */
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 50% 23.07% / 75% 2px no-repeat,
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 50% 76.93% / 75% 2px no-repeat,
+        /* linea centrale di servizio */
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 50% 50% / 2px 53.86% no-repeat;
+
+    --court-aspect: 10.97 / 23.77;
+}
+
+/* =====================
+   GLOBAL BACKGROUND
+   ===================== */
+html, body {
+    background: var(--dark-bg-a) !important;
+}
+
+::selection {
+    background: var(--ball);
+    color: var(--dark-bg-a);
+}
+
+/* =====================
+   INQUADRATURE — base comune
+   Le sezioni diventano un "set": i pseudo-elementi stanno dietro al contenuto
+   ===================== */
+.hero,
+.screenshots-section,
+.features-section,
+.testimonials-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero::before,
+.hero::after,
+.screenshots-section::before,
+.features-section::before,
+.testimonials-section::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =====================
+   HEADER
+   ===================== */
+.site-header {
+    background: rgba(6, 21, 43, 0.72) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(20px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+    box-shadow: inset 0 -1px 0 var(--ball-soft) !important;
+}
+
+.site-header .brand-name {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.site-header .nav-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.site-header .nav-link:hover {
+    color: var(--ball) !important;
+}
+
+.site-header .nav-link:focus-visible,
+.footer-privacy-link:focus-visible {
+    outline: 2px solid var(--ball);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* =====================
+   HERO — ripresa TV da dietro la linea di fondo
+   Campo intero in prospettiva che svanisce nel buio
+   ===================== */
+.hero {
+    background:
+        radial-gradient(ellipse 70% 55% at 50% 0%, rgba(120, 170, 255, 0.10) 0%, transparent 70%),
+        linear-gradient(180deg, var(--dark-bg-a) 0%, var(--dark-bg-b) 60%, var(--dark-bg-c) 100%) !important;
+    padding: 7rem 0 5rem;
+}
+
+/* Il campo */
+.hero::before {
+    left: 50%;
+    bottom: 0;
+    width: min(85vw, 760px);
+    aspect-ratio: var(--court-aspect);
+    background:
+        var(--court-lines),
+        /* superficie: blu nel rettangolo del singolo, verde nei corridoi */
+        linear-gradient(90deg,
+            rgba(29, 91, 79, 0.45) 0 12.5%,
+            rgba(18, 58, 107, 0.55) 12.5% 87.5%,
+            rgba(29, 91, 79, 0.45) 87.5% 100%);
+    transform-origin: 50% 100%;
+    transform: translateX(-50%) perspective(1000px) rotateX(62deg);
+    /* il campo "sfuma" verso il fondo, come fuori dal cono di luce */
+    mask-image: linear-gradient(to top, #000 15%, rgba(0, 0, 0, 0.5) 45%, transparent 80%);
+    -webkit-mask-image: linear-gradient(to top, #000 15%, rgba(0, 0, 0, 0.5) 45%, transparent 80%);
+    opacity: 0.7;
+    animation: court-camera-in 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Luci dello stadio + vignettatura + dissolvenza verso la sezione successiva */
+.hero::after {
+    inset: 0;
+    background:
+        radial-gradient(ellipse 35% 60% at 12% -10%, var(--ball-soft) 0%, transparent 70%),
+        radial-gradient(ellipse 35% 60% at 88% -10%, rgba(200, 225, 255, 0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 90% 80% at 50% 45%, transparent 55%, rgba(3, 10, 22, 0.7) 100%),
+        linear-gradient(to bottom, transparent 75%, var(--dark-bg-b) 100%);
+}
+
+@keyframes court-camera-in {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) perspective(1000px) rotateX(74deg) scale(0.9);
+    }
+    to {
+        opacity: 0.7;
+        transform: translateX(-50%) perspective(1000px) rotateX(62deg) scale(1);
+    }
+}
+
+.hero-title {
+    color: #ffffff !important;
+    text-shadow: 0 2px 30px rgba(2, 10, 24, 0.7);
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.rating-text {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* =====================
+   SCREENSHOTS — dettaglio: la "T" del box di servizio
+   Primo piano ruotato, visibile solo attorno all'incrocio
+   ===================== */
+.screenshots-section {
+    background: var(--dark-bg-b) !important;
+}
+
+.screenshots-section::before {
+    top: -35%;
+    right: -18%;
+    width: min(90vw, 900px);
+    aspect-ratio: var(--court-aspect);
+    background: var(--court-lines);
+    transform: rotate(-24deg);
+    /* inquadra solo l'incrocio tra linea di servizio e linea centrale */
+    mask-image: radial-gradient(ellipse 42% 20% at 50% 23%, #000 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 42% 20% at 50% 23%, #000 0%, transparent 100%);
+    opacity: 0.35;
+}
+
+.screenshots-section .section-header h2 {
+    color: #ffffff !important;
+}
+
+.screenshots-section .section-description {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* =====================
+   FEATURES — dettaglio: angolo del corridoio del doppio
+   Visto radente, le card di vetro lo sfocano passandoci sopra
+   ===================== */
+.features-section {
+    background: linear-gradient(160deg, var(--dark-bg-b) 0%, var(--dark-bg-c) 55%, var(--dark-bg-b) 100%) !important;
+}
+
+.features-section::before {
+    left: -6%;
+    bottom: -8%;
+    width: min(120vw, 1200px);
+    aspect-ratio: var(--court-aspect);
+    background: var(--court-lines);
+    transform-origin: 0 100%;
+    transform: perspective(900px) rotateX(55deg) rotate(8deg);
+    /* inquadra l'angolo in basso a sinistra: fondo + doppio + singolo */
+    mask-image: radial-gradient(ellipse 45% 22% at 6% 100%, #000 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 45% 22% at 6% 100%, #000 0%, transparent 100%);
+    opacity: 0.4;
+}
+
+.features-section .section-header h2,
+.features-section .category-title {
+    color: #ffffff !important;
+}
+
+.features-section .section-description,
+.features-section .category-description {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.feature-card {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(20px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-top-color: var(--glass-border-top) !important;
+    box-shadow: var(--glass-shadow) !important;
+}
+
+.feature-title {
+    color: #ffffff !important;
+}
+
+.feature-description {
+    color: rgba(255, 255, 255, 0.68) !important;
+}
+
+.feature-icon {
+    background:
+        radial-gradient(circle at -20% 50%, transparent 58%, rgba(255, 255, 255, 0.35) 59%, rgba(255, 255, 255, 0.35) 61%, transparent 62%),
+        radial-gradient(circle at 120% 50%, transparent 58%, rgba(255, 255, 255, 0.35) 59%, rgba(255, 255, 255, 0.35) 61%, transparent 62%),
+        radial-gradient(circle at 30% 25%, rgba(220, 245, 74, 0.45) 0%, rgba(220, 245, 74, 0.12) 70%) !important;
+    border: 1px solid rgba(220, 245, 74, 0.4) !important;
+    box-shadow: 0 0 18px var(--ball-soft) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* =====================
+   DOWNLOAD / CTA — la rete
+   ===================== */
+.download-section {
+    background:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 16px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 16px),
+        linear-gradient(135deg, var(--court-green) 0%, var(--court-blue) 55%, #0b2c56 100%) !important;
+    border-top: 4px solid var(--court-line-strong);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =====================
+   REVIEWS — dettaglio: la linea di fondo col segno centrale
+   Attraversa la sezione e si perde ai lati
+   ===================== */
+.testimonials-section {
+    background: linear-gradient(160deg, var(--dark-bg-b) 0%, var(--dark-bg-c) 55%, var(--dark-bg-b) 100%) !important;
+}
+
+.testimonials-section::before {
+    top: 2.5rem;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background:
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 50% 0 / 100% 2px no-repeat,
+        linear-gradient(var(--court-chalk), var(--court-chalk)) 50% 0 / 2px 100% no-repeat;
+    mask-image: linear-gradient(to right, transparent 5%, #000 40%, #000 60%, transparent 95%);
+    -webkit-mask-image: linear-gradient(to right, transparent 5%, #000 40%, #000 60%, transparent 95%);
+    opacity: 0.35;
+}
+
+.testimonials-section .section-header h2 {
+    color: #ffffff !important;
+}
+
+.testimonials-section .section-description {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.testimonial-card {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(20px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-top-color: var(--glass-border-top) !important;
+    box-shadow: var(--glass-shadow) !important;
+}
+
+.testimonial-author {
+    color: #ffffff !important;
+}
+
+.testimonial-quote {
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.star {
+    color: var(--ball) !important;
+    text-shadow: 0 0 8px var(--ball-glow);
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+.site-footer {
+    background: rgba(3, 10, 22, 0.96) !important;
+    border-top: 1px solid var(--glass-border) !important;
+}
+
+.site-footer .brand-name,
+.footer-tagline,
+.footer-copyright p,
+.footer-privacy-link {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.footer-privacy-link:hover {
+    color: var(--ball) !important;
+}
+
+/* =====================
+   PRIVACY PAGE
+   ===================== */
+.privacy-page {
+    background: var(--dark-bg-a) !important;
+    min-height: 100vh;
+}
+
+.privacy-title {
+    color: #ffffff !important;
+}
+
+.privacy-content h2,
+.privacy-content h3 {
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.privacy-content p,
+.privacy-content li {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.privacy-content ul {
+    border-left: 2px solid var(--ball-soft);
+    padding-left: 1.5rem;
+}
+
+/* =====================
+   MOBILE — inquadrature più strette
+   ===================== */
+@media (max-width: 640px) {
+    .hero::before {
+        width: 110vw;
+        opacity: 0.55;
+    }
+    .screenshots-section::before,
+    .features-section::before {
+        opacity: 0.22;
+    }
+}
+
+/* =====================
+   ACCESSIBILITÀ & FALLBACK
+   ===================== */
+@media (prefers-reduced-motion: reduce) {
+    .hero::before {
+        animation: none;
+    }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .feature-card,
+    .testimonial-card {
+        background: rgba(18, 48, 86, 0.9) !important;
+    }
+    .site-header {
+        background: rgba(6, 21, 43, 0.97) !important;
+    }
+}
